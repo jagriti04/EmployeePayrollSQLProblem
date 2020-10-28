@@ -77,6 +77,25 @@ insert into employee_payroll(name, salary, start) values ('Bill', 400000.0, '202
 +----+---------+--------------+---------+------------+--------+---------+------------+
 
 
+ALTER Table employee_payroll CHANGE salary basic_pay double;
+ALTER TABLE employee_payroll ADD deductions DOUBLE NOT NULL AFTER basic_pay;
+Alter table employee_payroll ADD taxable_pay DOUBLE NOT NUll after deductions;
+Alter table employee_payroll ADD tax DOUBLE NOT NUll after taxable_pay;
+Alter table employee_payroll ADD net_pay DOUBLE NOT NUll after tax;
+update employee_payroll set department ='Sales' where name = 'Pooja';
+select * from employee_payroll;
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+-----+---------+------------+
+| id | name    | phone_number | address | department | gender | basic_pay | deductions | taxable_pay | tax | net_pay | start      |
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+-----+---------+------------+
+|  1 | Bill    | NULL         | NULL    |            | M      |     10000 |          0 |           0 |   0 |       0 | 2018-01-03 |
+|  2 | Pooja   | NULL         | NULL    | Sales      | F      |     20000 |          0 |           0 |   0 |       0 | 2019-11-13 |
+|  3 | Charlie | NULL         | NULL    |            | F      |   3000000 |          0 |           0 |   0 |       0 | 2020-05-21 |
+|  4 | Bill    | NULL         | TBD     | CSE        | NULL   |    400000 |          0 |           0 |   0 |       0 | 2020-06-20 |
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+-----+---------+------------+
+
+
+
+
 
 
 

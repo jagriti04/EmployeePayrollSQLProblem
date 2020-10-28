@@ -65,6 +65,7 @@ select * from employee_payroll;
 |  3 | Charlie | NULL         | NULL    | F      | 3000000 | 2020-05-21 |
 +----+---------+--------------+---------+--------+---------+------------+
 
+#UC9
 alter table employee_payroll alter address SET DEFAULT 'TBD';
 insert into employee_payroll(name, salary, start) values ('Bill', 400000.0, '2020-06-20');
 -----+--------+---------+------------+
@@ -75,7 +76,6 @@ insert into employee_payroll(name, salary, start) values ('Bill', 400000.0, '202
 |  3 | Charlie | NULL         | NULL    |            | F      | 3000000 | 2020-05-21 |
 |  4 | Bill    | NULL         | TBD     | CSE        | NULL   |  400000 | 2020-06-20 |
 +----+---------+--------------+---------+------------+--------+---------+------------+
-
 
 ALTER Table employee_payroll CHANGE salary basic_pay double;
 ALTER TABLE employee_payroll ADD deductions DOUBLE NOT NULL AFTER basic_pay;
@@ -93,6 +93,21 @@ select * from employee_payroll;
 |  4 | Bill    | NULL         | TBD     | CSE        | NULL   |    400000 |          0 |           0 |   0 |       0 | 2020-06-20 |
 +----+---------+--------------+---------+------------+--------+-----------+------------+-------------+-----+---------+------------+
 
+#UC 10
+insert into employee_payroll(name, department, basic_pay, start, deductions, taxable_pay, tax, net_pay) values ('Terissa','Sales', 400000.0, '2020-06-20', 200.0, 16000.0, 2000.0, 30000.0);
+
+insert into employee_payroll(name, department, basic_pay, start, deductions, taxable_pay, tax, net_pay) values ('Terissa','Marketing', 400000.0, '2020-06-20', 200.0, 16000.0, 2000.0, 30000.0);
+
+ SELECT * FROM employee_payroll;                                                                                                        +----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------+---------+------------+
+| id | name    | phone_number | address | department | gender | basic_pay | deductions | taxable_pay | tax  | net_pay | start      |
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------+---------+------------+
+|  1 | Bill    | NULL         | NULL    |            | M      |     10000 |          0 |           0 |    0 |       0 | 2018-01-03 |
+|  2 | Pooja   | NULL         | NULL    | Sales      | F      |     20000 |          0 |           0 |    0 |       0 | 2019-11-13 |
+|  3 | Charlie | NULL         | NULL    |            | F      |   3000000 |          0 |           0 |    0 |       0 | 2020-05-21 |
+|  4 | Bill    | NULL         | TBD     | CSE        | NULL   |    400000 |          0 |           0 |    0 |       0 | 2020-06-20 |
+|  5 | Terissa | NULL         | TBD     | Sales      | NULL   |    400000 |        200 |       16000 | 2000 |   30000 | 2020-06-20 |
+|  6 | Terissa | NULL         | TBD     | Marketing  | NULL   |    400000 |        200 |       16000 | 2000 |   30000 | 2020-06-20 |
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------+---------+------------+
 
 
 
